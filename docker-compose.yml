@@ -1,0 +1,13 @@
+version: "3"
+services:
+  site:
+    command: jekyll serve --force_polling
+    image: jekyll/jekyll:3.7.3
+    volumes:
+      - /c/Users/BenJW/Documents/Programming/bwindsor.github.io:/srv/jekyll
+    ports:
+      - 4000:4000
+      - 35729:35729
+      - 3000:3000
+      -   80:4000
+
