@@ -4,10 +4,52 @@ title: Scotland Cycle
 excerpt: Here's a writeup of my cycle trip around Scotland.
 ---
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+  crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+  integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+  crossorigin=""></script>
+
+<div id="map" style="height: 600px; width: 100%"></div>
+
+<script>
+
+var map = L.map('map').setView([57, -5], 7);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+fetch('/assets/gps_tracks/all_tracks.json').then(r => r.json()).then(data => {
+    L.geoJSON(data, {
+        style: feature => {
+            d = feature.properties.day
+            switch (feature.properties.category) {
+                case 'ride': return {color: (d % 2 == 0) ? 'blue' : 'green'};
+                case 'run': return {color: 'red'}
+            }
+        },
+        onEachFeature: (feature, layer) => {
+            if (feature.properties && feature.properties.day) {
+                layer.bindPopup(`Day ${feature.properties.day}`);
+            }
+        }
+    }).addTo(map);
+})
+
+/*
+L.marker([51.5, -0.09]).addTo(map)
+    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+    .openPopup();
+*/
+</script>
+
 ## Introduction
 I had 6 weeks off between jobs. I spent the first week going to interviews, the second week deciding which job offer to accept and getting the contract sorted, weeks 3-5 cycling around Scotland, and week 6 coaching orienteering to 16 year olds in Scotland. This is a write up of my cycle trip from Monday 16 July to Friday 3rd August 2018.
 
 I don't claim for this to be interesting to read - it's just a record of what I did!
+
+<a href="https://photos.app.goo.gl/c866Na7frtzivPJo7" target="_blank">Photos</a>
 
 ## Day 1
 I was staying with my parents, and got up early and cycled to Rugby for the 6.45am train. My sister had showed me how to make oat and banana cereal bar type things for breakfast, so I have enough for about a week worth of breakfasts! I did a puzzle book on the train (Hangjie). The train got to just outside Glasgow on time, but then got delayed half an hour waiting for a platform, which means refund! In Glasgow a Scottish man who I couldn't understand very well watched my bike whilst I bought water in Sainsbury's. Then I bought a pasty from a Scottish woman who I could understand, except that she spoke really quickly so I actually couldn't understand. Then I got the train to Balloch. In Balloch I tried to buy gas but couldn't find any. I cycled to Tarbet and found a campsite which sold gas on the way. I thought Tarbet would have a food shop, since it has a train station, but it didn't. But somebody told me the next village (Arrochar) has a shop, which it did. Back in Tarbet I got the boat across the Loch Lomond to Inversnaid. There was commentary with many stupid jokes. It's the largest freshwater body by area in the UK and 3rd deepest loch. I then discovered wild camping in the Trossachs national park is banned, so I kept cycling to a campsite. By chance I ended up at the only campsite run by the national park itself (not for profit). They said that wild camping is only banned near the roads (about 4% of the park), so thank drunken groups don't come and spoil the environment. He said what I'm doing would have been fine, and if a ranger came they'd just sell me a £3 permit instead of fining me. The campsite is very basic and spread out, I am in my own little clearing in the forest! And I hired a fire pit (metal bowl) to make fire in so I have a fire! Sadly no sausages though. I made pasta with baked beans and tinned peas! There are midges but not too many and the fire helps keep them away. My solar panel did well at recharging my watch so I can see where I've been this trip (useless for my phone though).
@@ -32,7 +74,8 @@ This morning was the last sprint race in Grangemouth. I managed to do the same a
 
 ## Day 8
 Arran in the rain - write up coming soon
-
+<iframe height='405' width='590' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/activities/1765783502/embed/824b40bd708be8bd239794b34614bb78c67b0f26'></iframe>
+   di 
 ## Day 9
 Such a contrast - moonlit clear sky tonight compared to the rain yesterday! I was camping in Lochranza last night right next to the ferry terminal, so I left my tent up as long as possible before the 9.30am boat in the hope it would dry a bit, and it did! I had porridge with dried mango and nuts in it for breakfast. I tied the remaining very wet things to the outside of my panniers so they could dry during the day (basically the clothes and shoes I cycled in yesterday).j I got the boat along with a group of about 25 cyclists who were on an organised tour from Penrith to Durness, staying in hotels and with luggage in a van - in fact the van even provided snack stops along the way! Shortly after leaving the ferry I noticed my wet shoes had fallen off - I cycled back and found them about 1k back, somebody had nicely balanced them on a fence to make them obvious. I also talked to a local woman on the boat who was a teacher and liked walking, I can't remember anything else interesting though. So I cycled to Torbert next, about 20k, caught the big group at one of their stops, and actually they only went a tiny bit faster than me. In Tarbert I bought food supplies and had a quick look around the castle ruins. Then I turned back to Kilberry on a coastal but very hilly road! I met a quite old cyclist going the other way who tried to be helpful giving directions, but I didn't need any and couldn't remember what he was saying anyway. Near Kilberry were some ancient stones, and a campsite in a really nice location where I bought an ice cream. I continued to Achahoish, this bit was really nice, by the sea, some beaches, sunny, wind behind! I then decided to leave the cycle route and try going round the next peninsula to Kilmory. I asked at somebody's house to fill up water and went. My map showed the road didn't go round the peninsula and it was signed dead-end, but there was a small track joining the roads marked "private", but I went there anyway and it was fine. I'm now camping in Kilmory Bay on a patch of short grass right by the beach, with a great view out to the sea and the island of Jura. I arrived at about 5 when the sun was still fairly strong, so I laid out most of my stuff to dry properly! Then I cooked dinner (pasta + green beans, gas is running out again oh no). Then I planned to go for a walk, but stopped after about 100m and spent 2 hours digging a trench and building a wall in the sand to divert a stream coming down the beach! Then there was an amazing sunset and moonrise to end the day.
 

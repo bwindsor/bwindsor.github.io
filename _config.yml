@@ -87,3 +87,4 @@ exclude:
   - docker-compose.yml
   - .travis.yml
   - .gitignore
+  - notebooks

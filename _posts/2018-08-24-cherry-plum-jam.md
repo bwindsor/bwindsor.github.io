@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Cherry Plum Jam Recipe
+excerpt: This was used to make jam in Yelvertoft in 2017
 ---
 
 This was used to make jam in Yelvertoft in 2017.

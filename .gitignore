@@ -4,3 +4,6 @@ _site
 *.gem
 .bundle
 vendor/bundle
+venv
+
+.ipynb_checkpoints  
