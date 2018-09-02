@@ -7,3 +7,5 @@ vendor/bundle
 venv
 
 .ipynb_checkpoints  
+geckodriver.log 
+chromedriver.exe 

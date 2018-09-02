@@ -23,16 +23,31 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 fetch('/assets/gps_tracks/all_tracks.json').then(r => r.json()).then(data => {
     L.geoJSON(data, {
         style: feature => {
-            d = feature.properties.day
-            switch (feature.properties.category) {
-                case 'ride': return {color: (d % 2 == 0) ? 'blue' : 'green'};
-                case 'run': return {color: 'red'}
+            if (feature.properties && feature.properties.day) {
+                d = feature.properties.day
+                switch (feature.properties.category) {
+                    case 'ride': return {color: (d % 2 == 0) ? 'blue' : 'green'};
+                    case 'run': return {color: 'red'}
+                }
             }
         },
         onEachFeature: (feature, layer) => {
             if (feature.properties && feature.properties.day) {
                 layer.bindPopup(`Day ${feature.properties.day}`);
             }
+        },
+        pointToLayer: (feature, latlng) => {
+            //return L.circleMarker(latlng);
+            f = feature.properties.file_name;
+            f = f.slice(0, f.length-4) + "Thumb.JPG";
+            var photoIcon = L.icon({
+                iconUrl: '/assets/images/Scotland2018/' + f
+                
+                //iconSize:     [38, 95], // size of the icon
+                //iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            });
+            return L.marker(latlng, {icon: photoIcon});
         }
     }).addTo(map);
 })
