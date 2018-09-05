@@ -13,7 +13,7 @@ fetch('/assets/gps_tracks/all_tracks.json').then(r => r.json()).then(data => {
             if (feature.properties && feature.properties.day) {
                 var d = feature.properties.day
                 switch (feature.properties.category) {
-                    case 'ride': return {color: (d % 2 == 0) ? 'blue' : 'green'};
+                    case 'ride': return {color: 'green'};
                     case 'run': return {color: 'red'}
                 }
             }
@@ -21,6 +21,25 @@ fetch('/assets/gps_tracks/all_tracks.json').then(r => r.json()).then(data => {
         onEachFeature: (feature, layer) => {
             if (feature.properties && feature.properties.day) {
                 layer.bindPopup(`Day ${feature.properties.day}`);
+                layer.on('mouseover', function (e) {
+                    this.openPopup();
+                });
+                layer.on('mouseout', function (e) {
+                    this.closePopup();
+                });
+
+                if (feature.properties.section == 1) {
+                    
+                    var campIcon = L.icon({
+                        iconUrl: '/assets/images/tent-icon.png',
+                        iconSize:     [30, 30] // size of the icon
+                        //iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+                    });
+                    var latLng = L.latLng(feature.geometry.coordinates[0][1], feature.geometry.coordinates[0][0])
+                    var marker = L.marker(latLng, {icon: campIcon}).addTo(map);
+                    L.DomUtil.addClass(marker.getElement(), 'tent-icon');
+                }
             }
         },
         pointToLayer: (feature, latlng) => {
