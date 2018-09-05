@@ -4,67 +4,17 @@ title: Scotland Cycle
 excerpt: Here's a writeup of my cycle trip around Scotland.
 ---
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
-  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-  crossorigin=""/>
-<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
-  integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
-  crossorigin=""></script>
+{% include leaflet-head.html %}
+
+Here's a map with routes and photos on it. You can also <a href="https://photos.app.goo.gl/c866Na7frtzivPJo7" target="_blank">view the photos on Google Photos</a>, or <a href="/posts/scotland-cycle-map" target="_blank">open a full screen map in a new tab</a>.
 
 <div id="map" style="height: 600px; width: 100%"></div>
-
-<script>
-
-var map = L.map('map').setView([57, -5], 7);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-fetch('/assets/gps_tracks/all_tracks.json').then(r => r.json()).then(data => {
-    L.geoJSON(data, {
-        style: feature => {
-            if (feature.properties && feature.properties.day) {
-                d = feature.properties.day
-                switch (feature.properties.category) {
-                    case 'ride': return {color: (d % 2 == 0) ? 'blue' : 'green'};
-                    case 'run': return {color: 'red'}
-                }
-            }
-        },
-        onEachFeature: (feature, layer) => {
-            if (feature.properties && feature.properties.day) {
-                layer.bindPopup(`Day ${feature.properties.day}`);
-            }
-        },
-        pointToLayer: (feature, latlng) => {
-            //return L.circleMarker(latlng);
-            f = feature.properties.file_name;
-            f = f.slice(0, f.length-4) + "Thumb.JPG";
-            var photoIcon = L.icon({
-                iconUrl: '/assets/images/Scotland2018/' + f
-                
-                //iconSize:     [38, 95], // size of the icon
-                //iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-                //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-            });
-            return L.marker(latlng, {icon: photoIcon});
-        }
-    }).addTo(map);
-})
-
-/*
-L.marker([51.5, -0.09]).addTo(map)
-    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-    .openPopup();
-*/
-</script>
+<script src="/assets/scripts/scotlandmap.js"></script>
 
 ## Introduction
 I had 6 weeks off between jobs. I spent the first week going to interviews, the second week deciding which job offer to accept and getting the contract sorted, weeks 3-5 cycling around Scotland, and week 6 coaching orienteering to 16 year olds in Scotland. This is a write up of my cycle trip from Monday 16 July to Friday 3rd August 2018.
 
 I don't claim for this to be interesting to read - it's just a record of what I did!
-
-<a href="https://photos.app.goo.gl/c866Na7frtzivPJo7" target="_blank">Photos</a>
 
 ## Day 1
 I was staying with my parents, and got up early and cycled to Rugby for the 6.45am train. My sister had showed me how to make oat and banana cereal bar type things for breakfast, so I have enough for about a week worth of breakfasts! I did a puzzle book on the train (Hangjie). The train got to just outside Glasgow on time, but then got delayed half an hour waiting for a platform, which means refund! In Glasgow a Scottish man who I couldn't understand very well watched my bike whilst I bought water in Sainsbury's. Then I bought a pasty from a Scottish woman who I could understand, except that she spoke really quickly so I actually couldn't understand. Then I got the train to Balloch. In Balloch I tried to buy gas but couldn't find any. I cycled to Tarbet and found a campsite which sold gas on the way. I thought Tarbet would have a food shop, since it has a train station, but it didn't. But somebody told me the next village (Arrochar) has a shop, which it did. Back in Tarbet I got the boat across the Loch Lomond to Inversnaid. There was commentary with many stupid jokes. It's the largest freshwater body by area in the UK and 3rd deepest loch. I then discovered wild camping in the Trossachs national park is banned, so I kept cycling to a campsite. By chance I ended up at the only campsite run by the national park itself (not for profit). They said that wild camping is only banned near the roads (about 4% of the park), so thank drunken groups don't come and spoil the environment. He said what I'm doing would have been fine, and if a ranger came they'd just sell me a £3 permit instead of fining me. The campsite is very basic and spread out, I am in my own little clearing in the forest! And I hired a fire pit (metal bowl) to make fire in so I have a fire! Sadly no sausages though. I made pasta with baked beans and tinned peas! There are midges but not too many and the fire helps keep them away. My solar panel did well at recharging my watch so I can see where I've been this trip (useless for my phone though).
@@ -123,3 +73,5 @@ A day off cycling! I caught the 9am bus from just outside the campsite to Tolsta
 
 ## Day 19
 The last day of the cycle! The boat left Stornoway at 7am so I set my alarm for 6, but woke up at 5.30 which was lucky because by the time I'd packed up and had breakfast I only just made the boat, arriving at 6.52 as it was preparing to leave! The boat was quite busy so I sat on the floor by the front windows. It was very misty so you couldn't see much, but I discovered that the fog horn sounded about every 2 minutes and 0.5 seconds, and we did then see a few porpoises quite close to the boat. I had a bacon roll as a second breakfast, and slept on the floor for the last half hour. When we arrived in Ullapool it was raining, not as forecast. I cycled and it kept raining. The sign said 57 miles to Inverness where I was headed. The road was a main road was wasn't that busy. It rose up onto the moors, climbing to about 300m, and miraculously as I crossed the high point, the weather transitioned from grey drizzle to sunshine and puffy clouds. The road joined cycle route 1 for the last section into Inverness which was nice. I then had 2.5 hours until my train, so I looked around some more interesting outdoor shops. The train was quite quiet, and had power sockets which was good for charging. I got off at Dyce and it was then another 22k to Templar's Park, where I was headed next to coach orienteering for the week. The cycle was really nice, there is a nicely surfaced disused railway all the way along the Deeside valley from Aberdeen, and it looks like it continues for a long way further than where I went to. So the trip was finished, I enjoyed exploring a part of my own country which I've never seen, enjoyed having my phone off most of the time, and enjoyed doing it by bike where you can get much closer to nature!
+
+{% include leaflet-foot.html %}
