@@ -10,16 +10,16 @@ fetch('/assets/gps_tracks/all_tracks.json').then(r => r.json()).then(data => {
     
     L.geoJSON(data, {
         style: feature => {
-            if (feature.properties && feature.properties.day) {
-                var d = feature.properties.day
+            if (feature.properties.category) {
                 switch (feature.properties.category) {
                     case 'ride': return {color: 'green'};
-                    case 'run': return {color: 'red'}
+                    case 'run': return {color: 'red'};
+                    case 'transit': return {color: 'blue'}
                 }
             }
         },
         onEachFeature: (feature, layer) => {
-            if (feature.properties && feature.properties.day) {
+            if (feature.properties.day) {
                 layer.bindPopup(`Day ${feature.properties.day}`);
                 layer.on('mouseover', function (e) {
                     this.openPopup();
