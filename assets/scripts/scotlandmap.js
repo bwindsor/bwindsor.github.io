@@ -52,6 +52,7 @@ fetch('/assets/gps_tracks/all_tracks.json').then(r => r.json()).then(data => {
             link.setAttribute('href', `/assets/images/Scotland2018/${feature.properties.file_name}`)
             link.setAttribute('data-lightbox', 'Scotland2018')
             link.setAttribute('data-tile', 'Scotland 2018 Cycle')
+            link.style.display = 'none';
             var img = document.createElement('img')
             img.setAttribute('src', `/assets/images/Scotland2018/${f}`)
             link.appendChild(img)
