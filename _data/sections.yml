@@ -1,6 +1,2 @@
 - name: Posts
   location: posts
-- name: About
-  location: about
-- name: Links
-  location: links
